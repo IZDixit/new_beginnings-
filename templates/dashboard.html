@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Activity Dashboard</h2>
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    {{ sleep_graph|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    {{ exercise_graph|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    {{ sunlight_graph|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a href="{% url 'home' %}" class="btn btn-primary me-2">Back to Home</a>
+        <a href="{% url 'input' %}" class="btn btn-success">Track Activity</a>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{%extends "base.html" %}
+
+{% block content %}
+<div class="card mt-4 mx-auto" style="max-width: 600px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgb(249, 10, 10); background-color: #b5f0f5;">
+    <div class="card-header">
+        <h3>Understanding the Core Principles of this App</h3>
+    </div>
+    <div class="card-body" style="background-color: #b3e5fc;">
+        <p>What does this App track? and why?</p>
+        <ol>
+            <li>Sleep Cycles: Sleep occurs in 90-minute cycles. Tracking sleep in multiples of 1.5 hours can help users wake up feeling more rested.</li>
+            <li>Morning Sunlight Exposure: Exposing oneself to sunlight early in the day helps set the circadian rhythm.</li>
+            <li>Caffeine Intake: Delay coffee intake by 90–120 minutes after waking to avoid energy crashes later.</li>
+            <li>Exercise: Timing and type of exercise (strength vs. cardio) affect energy levels and sleep quality.</li>
+            <li>Evening Light Management: Reducing blue light exposure in the evening helps the body prepare for sleep.</li>
+        </ol>
+    </div>
+    <div class="text-center mt-3 mb-4">
+        <a href="{% url 'dashboard' %}" class="btn btn-primary me-2">View Dashboard</a>
+        <a href="{% url 'input' %}" class="btn btn-success">Track Activity</a>
+    </div>
+</div>
+{% endblock content %}

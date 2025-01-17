@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h2 class="text-center">Track Your Day</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+                
+                <!-- Sleep Section -->
+                <div class="row mb-4 p-3 bg-light rounded">
+                    <h4 class="text-primary mb-3">Sleep Tracking</h4>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="sleep">Sleep Time</label>
+                            <div class="input-group">
+                                <input type="datetime-local" class="form-control" id="sleep" name="sleep">
+                                <button type="button" class="btn btn-outline-primary" onclick="setCurrentTime('sleep')">
+                                    <i class="fa fa-clock-o"></i> Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="wake">Wake Time</label>
+                            <div class="input-group">
+                                <input type="datetime-local" class="form-control" id="wake" name="wake">
+                                <button type="button" class="btn btn-outline-primary" onclick="setCurrentTime('wake')">
+                                    <i class="fa fa-clock-o"></i> Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercise Section -->
+                <div class="row mb-4 p-3 bg-light rounded">
+                    <h4 class="text-success mb-3">Exercise Tracking</h4>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exercise_start">Exercise Start</label>
+                            <div class="input-group">
+                                <input type="datetime-local" class="form-control" id="exercise_start" name="exercise_start">
+                                <button type="button" class="btn btn-outline-success" onclick="setCurrentTime('exercise_start')">
+                                    <i class="fa fa-clock-o"></i> Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exercise_end">Exercise End</label>
+                            <div class="input-group">
+                                <input type="datetime-local" class="form-control" id="exercise_end" name="exercise_end">
+                                <button type="button" class="btn btn-outline-success" onclick="setCurrentTime('exercise_end')">
+                                    <i class="fa fa-clock-o"></i> Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exercise_type">Exercise Type</label>
+                            <select class="form-control" id="exercise_type" name="exercise_type">
+                                <option value="strength">Strength</option>
+                                <option value="cardio">Cardio</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sunlight Section -->
+                <div class="row mb-4 p-3 bg-light rounded">
+                    <h4 class="text-warning mb-3">Sunlight Exposure</h4>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="sunlight_start">Sunlight Start</label>
+                            <div class="input-group">
+                                <input type="datetime-local" class="form-control" id="sunlight_start" name="sunlight_start">
+                                <button type="button" class="btn btn-outline-warning" onclick="setCurrentTime('sunlight_start')">
+                                    <i class="fa fa-clock-o"></i> Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="sunlight_end">Sunlight End</label>
+                            <div class="input-group">
+                                <input type="datetime-local" class="form-control" id="sunlight_end" name="sunlight_end">
+                                <button type="button" class="btn btn-outline-warning" onclick="setCurrentTime('sunlight_end')">
+                                    <i class="fa fa-clock-o"></i> Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center mt-4">
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{% url 'home' %}" class="btn btn-secondary btn-lg">Back to Home</a>
+                        <a href="{% url 'dashboard' %}" class="btn btn-info btn-lg">View Dashboard</a>
+                        <button type="submit" class="btn btn-primary btn-lg">Save Entry</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+function setCurrentTime(fieldId) {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    
+    const currentDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+    document.getElementById(fieldId).value = currentDateTime;
+}
+</script>
+{% endblock content %}
