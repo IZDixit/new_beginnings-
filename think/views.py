@@ -15,7 +15,8 @@ class DashboardView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        data = UserInput.objects.all()
+        # Order the data by sleep time
+        data = UserInput.objects.all().order_by('sleep')
         graph_gen = GraphGenerator(data)
         
         context['sleep_graph'] = graph_gen.sleep_analysis_graph()

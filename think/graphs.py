@@ -1,6 +1,7 @@
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
 import pandas as pd
+from .models import UserInput
 
 class GraphGenerator:
     def __init__(self, data):
@@ -10,7 +11,9 @@ class GraphGenerator:
         if not self.data or len(self.data) == 0:
             raise ValueError("No data available")
         
-        df = pd.DataFrame(list(self.data))
+        # Convert QuerySet to DataFrame using values()
+        df = pd.DataFrame.from_records(self.data.values())
+        
         missing_cols = [col for col in required_columns if col not in df.columns]
         if missing_cols:
             raise KeyError(f"Missing required columns: {', '.join(missing_cols)}")
@@ -18,12 +21,12 @@ class GraphGenerator:
 
     def sleep_analysis_graph(self, start_date=None, end_date=None):
         try:
-            required_columns = ['sleep_time', 'wake_time']
+            required_columns = ['sleep', 'wake']
             df = self._validate_data(required_columns)
             
-            df['sleep_duration'] = (pd.to_datetime(df['wake_time']) - 
-                                  pd.to_datetime(df['sleep_time'])).dt.total_seconds() / 3600
-            df['date'] = pd.to_datetime(df['sleep_time']).dt.date
+            df['sleep_duration'] = (pd.to_datetime(df['wake']) - 
+                                  pd.to_datetime(df['sleep'])).dt.total_seconds() / 3600
+            df['date'] = pd.to_datetime(df['sleep']).dt.date
 
             if start_date:
                 df = df[df['date'] >= start_date]
