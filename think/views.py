@@ -4,12 +4,11 @@ from django.contrib import messages
 from .models import UserInput
 from .graphs import GraphGenerator
 
-
-# Create your views here.
+# View for the home page
 class HomePageView(TemplateView):
     template_name = "home.html"
 
-
+# View for the dashboard page
 class DashboardView(TemplateView):
     template_name = "dashboard.html"
 
@@ -19,18 +18,20 @@ class DashboardView(TemplateView):
         data = UserInput.objects.all().order_by('sleep')
         graph_gen = GraphGenerator(data)
         
+        # Generate graphs and add them to the context
         context['sleep_graph'] = graph_gen.sleep_analysis_graph()
         context['exercise_graph'] = graph_gen.exercise_analysis_graph()
         context['sunlight_graph'] = graph_gen.sunlight_analysis_graph()
         
         return context
 
-
+# View for the input page
 class InputView(TemplateView):
     template_name = "input.html"
 
     def post(self, request, *args, **kwargs):
         try:
+            # Save user input data to the database
             UserInput.objects.create(
                 sleep=request.POST.get('sleep'),
                 wake=request.POST.get('wake'),

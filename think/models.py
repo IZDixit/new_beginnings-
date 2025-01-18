@@ -6,6 +6,7 @@ class UserInput(models.Model):
         ('cardio', 'Cardio'),
     ]
 
+    # Fields for user activity data
     id = models.AutoField(primary_key=True)
     sleep = models.DateTimeField(null=True)
     wake = models.DateTimeField(null=True)

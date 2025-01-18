@@ -4,6 +4,7 @@
 <div class="container mt-4">
     <h2 class="text-center mb-4">Activity Dashboard</h2>
     
+    <!-- Display sleep analysis graph -->
     <div class="row mb-4">
         <div class="col-12">
             <div class="card">
@@ -14,6 +15,7 @@
         </div>
     </div>
 
+    <!-- Display exercise analysis graph -->
     <div class="row mb-4">
         <div class="col-12">
             <div class="card">
@@ -24,6 +26,7 @@
         </div>
     </div>
 
+    <!-- Display sunlight analysis graph -->
     <div class="row mb-4">
         <div class="col-12">
             <div class="card">
@@ -34,6 +37,7 @@
         </div>
     </div>
 
+    <!-- Navigation buttons -->
     <div class="text-center">
         <a href="{% url 'home' %}" class="btn btn-primary me-2">Back to Home</a>
         <a href="{% url 'input' %}" class="btn btn-success">Track Activity</a>

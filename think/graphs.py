@@ -19,6 +19,7 @@ class GraphGenerator:
             raise KeyError(f"Missing required columns: {', '.join(missing_cols)}")
         return df
 
+    # Generate sleep analysis graph
     def sleep_analysis_graph(self, start_date=None, end_date=None):
         try:
             required_columns = ['sleep', 'wake']
@@ -50,6 +51,7 @@ class GraphGenerator:
         except Exception as e:
             return f"<p>Error generating sleep analysis graph: {str(e)}</p>"
 
+    # Generate exercise analysis graph
     def exercise_analysis_graph(self, start_date=None, end_date=None):
         try:
             required_columns = ['exercise_start', 'exercise_end', 'exercise_type']
@@ -81,6 +83,7 @@ class GraphGenerator:
         except Exception as e:
             return f"<p>Error generating exercise analysis graph: {str(e)}</p>"
 
+    # Generate sunlight analysis graph
     def sunlight_analysis_graph(self, start_date=None, end_date=None):
         try:
             required_columns = ['sunlight_start', 'sunlight_end']
